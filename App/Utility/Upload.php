@@ -3,14 +3,11 @@
 namespace App\Utility;
 
 class Upload {
-
-
     public static function uploadFile($file, $fileName)
     {
-        $currentDirectory = getcwd();
-        $uploadDirectory = "/storage/";
-
-
+        // Resolve project root so we can reliably find the storage folder
+        $currentDirectory = dirname(__DIR__, 2);
+        $uploadDirectory = "/public/storage/";
         $fileExtensionsAllowed = ['jpeg', 'jpg', 'png'];
 
         $fileSize = $file['size'];

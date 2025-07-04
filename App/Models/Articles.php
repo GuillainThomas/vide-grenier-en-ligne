@@ -152,7 +152,12 @@ class Articles extends Model {
         $stmt->execute();
     }
 
+    public static function delete($id)
+    {
+        $db = static::getDB();
 
+        $stmt = $db->prepare('DELETE FROM articles WHERE id = ?');
 
-
+        $stmt->execute([$id]);
+    }
 }
