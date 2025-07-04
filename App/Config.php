@@ -7,32 +7,21 @@ namespace App;
  *
  * PHP version 7.0
  */
+
 class Config
 {
-
     /**
-     * Database host
-     * @var string
+     * Retrieve an environment variable or fallback to the provided default.
+     *
+     * @param string $key
+     * @param string $default
+     * @return string
      */
-    const DB_HOST = 'localhost';
-
-    /**
-     * Database name
-     * @var string
-     */
-    const DB_NAME = 'videgrenierenligne';
-
-    /**
-     * Database user
-     * @var string
-     */
-    const DB_USER = 'webapplication';
-
-    /**
-     * Database password
-     * @var string
-     */
-    const DB_PASSWORD = '653rag9T';
+    public static function env(string $key, string $default): string
+    {
+        $value = getenv($key);
+        return ($value === false || $value === '') ? $default : $value;
+    }
 
     /**
      * Show or hide error messages on screen

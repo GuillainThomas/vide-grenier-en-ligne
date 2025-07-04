@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Contacter {{ article.username }}{% endblock %}
+
+{% block body %}
+<div class="container mt-30">
+    {% if sent %}
+    <div class="alert alert-success">Votre message a été envoyé.</div>
+    {% endif %}
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="contactEmail">Votre email</label>
+            <input type="email" class="form-control" id="contactEmail" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea class="form-control" id="contactMessage" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary u-btn">Envoyer</button>
+    </form>
+</div>
+{% endblock %}
