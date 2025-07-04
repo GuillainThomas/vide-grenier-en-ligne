@@ -1,7 +1,6 @@
 services:
   server:
     container_name: ${SERVER_CONTAINER_NAME}
-    build: .
     ports:
       - "${SERVER_PORT}:80"
     depends_on:

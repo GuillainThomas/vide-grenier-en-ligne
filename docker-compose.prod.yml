@@ -1,0 +1,3 @@
+services:
+  server:
+    image: guillainthomas/vide-grenier-en-ligne:latest
