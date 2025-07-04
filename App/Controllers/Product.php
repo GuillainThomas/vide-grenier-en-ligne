@@ -76,4 +76,40 @@ class Product extends \Core\Controller
             'suggestions' => $suggestions
         ]);
     }
+
+    /**
+     * Affiche le formulaire de contact et envoie le message
+     * @return void
+     */
+    public function contactAction()
+    {
+        $id = $this->route_params['id'];
+
+        try {
+            $article = Articles::getOne($id);
+            $article = $article[0];
+        } catch(\Exception $e){
+            var_dump($e);
+        }
+
+        $sent = false;
+
+        if (isset($_POST['submit'])) {
+            $message = $_POST['message'] ?? '';
+            $from    = $_POST['email'] ?? '';
+
+            $subject = 'Contact au sujet de ' . $article['name'];
+            $to      = $article['email'];
+
+            $headers = 'From: ' . $from;
+            @mail($to, $subject, $message, $headers);
+
+            $sent = true;
+        }
+
+        View::renderTemplate('Product/Contact.html', [
+            'article' => $article,
+            'sent'    => $sent
+        ]);
+    }
 }
