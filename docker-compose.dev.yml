@@ -1,0 +1,4 @@
+services:
+  server:
+    volumes:
+      - ./public/api-docs:/var/www/html/public/api-docs:ro
