@@ -52,7 +52,6 @@ class User extends \Core\Controller
             // validation
 
             $this->register($f);
-            //// TODO: Rappeler la fonction de login pour connecter l'utilisateur
             // Connecte l'utilisateur directement après l'inscription
             $this->login($f);
             header('Location: /account');
@@ -111,14 +110,14 @@ class User extends \Core\Controller
                 return false;
             }
 
-            // TODO: Create a remember me cookie if the user has selected the option
-            // to remained logged in on the login form.
-            // https://github.com/andrewdyer/php-mvc-register-login/blob/development/www/app/Model/UserLogin.php#L86
-
             $_SESSION['user'] = array(
                 'id' => $user['id'],
                 'username' => $user['username'],
             );
+
+            if (!empty($data['remember'])) {
+                setcookie(session_name(), session_id(), time() + 60 * 60 * 24 * 30, '/');
+            }
 
             return true;
 
